@@ -1,0 +1,12 @@
+{
+  "overwrite": true,
+  "inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "value": "Prometheus"
+    }
+  ],
+  "folderId": 0
+}
