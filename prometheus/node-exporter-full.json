@@ -1115,6 +1115,7 @@
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Busy System",
           "refId": "A",
@@ -1124,6 +1125,7 @@
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Busy User",
           "refId": "B",
@@ -1132,6 +1134,7 @@
         {
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Busy Iowait",
           "refId": "C",
@@ -1140,6 +1143,7 @@
         {
           "expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Busy IRQs",
           "refId": "D",
@@ -1148,6 +1152,7 @@
         {
           "expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Busy Other",
           "refId": "E",
@@ -1156,6 +1161,7 @@
         {
           "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "Idle",
           "refId": "F",
@@ -1473,6 +1479,7 @@
         {
           "expr": "rate(node_network_receive_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])*8",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "recv {{device}}",
           "refId": "A",
@@ -1481,6 +1488,7 @@
         {
           "expr": "rate(node_network_transmit_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])*8",
           "format": "time_series",
+          "interval": "20m",
           "intervalFactor": 5,
           "legendFormat": "trans {{device}} ",
           "refId": "B",
@@ -1719,6 +1727,7 @@
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode=\"system\",Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
               "interval": "10s",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "System - Processes executing in kernel mode",
               "refId": "A",
@@ -1727,6 +1736,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='user',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "User - Normal processes executing in user mode",
               "refId": "B",
@@ -1735,6 +1745,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='nice',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Nice - Niced processes executing in user mode",
               "refId": "C",
@@ -1743,6 +1754,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Idle - Waiting for something to happen",
               "refId": "D",
@@ -1751,6 +1763,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='iowait',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Iowait - Waiting for I/O to complete",
               "refId": "E",
@@ -1759,6 +1772,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='irq',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Irq - Servicing interrupts",
               "refId": "F",
@@ -1767,6 +1781,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='softirq',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Softirq - Servicing softirqs",
               "refId": "G",
@@ -1775,6 +1790,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='steal',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Steal - Time spent in other operating systems when running in a virtualized environment",
               "refId": "H",
@@ -1783,6 +1799,7 @@
             {
               "expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='guest',Name=\"prod-1-$project\"}[$__rate_interval])) * 100",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Guest - Time spent running a virtual CPU for a guest operating system",
               "refId": "I",
@@ -2099,6 +2116,7 @@
             {
               "expr": "rate(node_network_receive_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])*8",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive",
               "refId": "A",
@@ -2107,6 +2125,7 @@
             {
               "expr": "rate(node_network_transmit_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])*8",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit",
               "refId": "B",
@@ -2408,6 +2427,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_reads_completed_total{Name=\"prod-1-$project\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -2415,6 +2435,7 @@
             },
             {
               "expr": "rate(node_disk_writes_completed_total{Name=\"prod-1-$project\",device=~\"$diskdevices\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -2549,6 +2570,7 @@
               "expr": "rate(node_disk_read_bytes_total{Name=\"prod-1-$project\",device=~\"$diskdevices\"}[$__rate_interval])",
               "format": "time_series",
               "hide": false,
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Successfully read bytes",
               "refId": "A",
@@ -2558,6 +2580,7 @@
               "expr": "rate(node_disk_written_bytes_total{Name=\"prod-1-$project\",device=~\"$diskdevices\"}[$__rate_interval])",
               "format": "time_series",
               "hide": false,
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Successfully written bytes",
               "refId": "B",
@@ -2669,7 +2692,7 @@
               "expr": "rate(node_disk_io_time_seconds_total{Name=\"prod-1-$project\",device=~\"$diskdevices\"} [$__rate_interval])",
               "format": "time_series",
               "hide": false,
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}}",
               "refId": "A",
@@ -4733,6 +4756,7 @@
             {
               "expr": "rate(node_vmstat_pgpgin{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Pagesin - Page in operations",
               "refId": "A",
@@ -4741,6 +4765,7 @@
             {
               "expr": "rate(node_vmstat_pgpgout{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "Pagesout - Page out operations",
               "refId": "B",
@@ -7901,6 +7926,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_reads_completed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Reads completed",
               "refId": "A",
@@ -7908,6 +7934,7 @@
             },
             {
               "expr": "rate(node_disk_writes_completed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Writes completed",
               "refId": "B",
@@ -8099,6 +8126,7 @@
             {
               "expr": "rate(node_disk_read_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Read bytes",
               "refId": "A",
@@ -8107,6 +8135,7 @@
             {
               "expr": "rate(node_disk_written_bytes_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Written bytes",
               "refId": "B",
@@ -8300,7 +8329,7 @@
             {
               "expr": "rate(node_disk_read_time_seconds_total{Name=\"prod-1-$project\"}[$__rate_interval]) / rate(node_disk_reads_completed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "hide": false,
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - r_await",
               "refId": "A",
@@ -8309,7 +8338,7 @@
             {
               "expr": "rate(node_disk_write_time_seconds_total{Name=\"prod-1-$project\"}[$__rate_interval]) / rate(node_disk_writes_completed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "hide": false,
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - w_await",
               "refId": "B",
@@ -8498,7 +8527,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_io_time_weighted_seconds_total{Name=\"prod-1-$project\"}[$__rate_interval])",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}}",
               "refId": "A",
@@ -8691,6 +8720,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_reads_merged_total{Name=\"prod-1-$project\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Read merged",
               "refId": "A",
@@ -8698,6 +8728,7 @@
             },
             {
               "expr": "rate(node_disk_writes_merged_total{Name=\"prod-1-$project\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Write merged",
               "refId": "B",
@@ -8886,7 +8917,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_io_time_seconds_total{Name=\"prod-1-$project\"}[$__rate_interval])",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - IO",
               "refId": "A",
@@ -8894,7 +8925,7 @@
             },
             {
               "expr": "rate(node_disk_discard_time_seconds_total{Name=\"prod-1-$project\"}[$__rate_interval])",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - discard",
               "refId": "B",
@@ -9083,6 +9114,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_io_now{Name=\"prod-1-$project\"}[$__rate_interval])",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - IO now",
               "refId": "A",
@@ -9289,7 +9321,7 @@
           "targets": [
             {
               "expr": "rate(node_disk_discards_completed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Discards completed",
               "refId": "A",
@@ -9297,7 +9329,7 @@
             },
             {
               "expr": "rate(node_disk_discards_merged_total{Name=\"prod-1-$project\"}[$__rate_interval])",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Discards merged",
               "refId": "B",
@@ -10001,7 +10033,7 @@
             {
               "expr": "rate(node_network_receive_packets_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive",
               "refId": "A",
@@ -10010,7 +10042,7 @@
             {
               "expr": "rate(node_network_transmit_packets_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
-              "interval": "",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit",
               "refId": "B",
@@ -10114,6 +10146,7 @@
             {
               "expr": "rate(node_network_receive_errs_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive errors",
               "refId": "A",
@@ -10122,6 +10155,7 @@
             {
               "expr": "rate(node_network_transmit_errs_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Rransmit errors",
               "refId": "B",
@@ -10225,6 +10259,7 @@
             {
               "expr": "rate(node_network_receive_drop_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive drop",
               "refId": "A",
@@ -10233,6 +10268,7 @@
             {
               "expr": "rate(node_network_transmit_drop_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit drop",
               "refId": "B",
@@ -10336,6 +10372,7 @@
             {
               "expr": "rate(node_network_receive_compressed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive compressed",
               "refId": "A",
@@ -10344,6 +10381,7 @@
             {
               "expr": "rate(node_network_transmit_compressed_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit compressed",
               "refId": "B",
@@ -10447,6 +10485,7 @@
             {
               "expr": "rate(node_network_receive_multicast_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive multicast",
               "refId": "A",
@@ -10550,6 +10589,7 @@
             {
               "expr": "rate(node_network_receive_fifo_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive fifo",
               "refId": "A",
@@ -10558,6 +10598,7 @@
             {
               "expr": "rate(node_network_transmit_fifo_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit fifo",
               "refId": "B",
@@ -10663,6 +10704,7 @@
               "expr": "rate(node_network_receive_frame_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
               "hide": false,
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Receive frame",
               "refId": "A",
@@ -10763,6 +10805,7 @@
             {
               "expr": "rate(node_network_transmit_carrier_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Statistic transmit_carrier",
               "refId": "A",
@@ -10866,6 +10909,7 @@
             {
               "expr": "rate(node_network_transmit_colls_total{Name=\"prod-1-$project\"}[$__rate_interval])",
               "format": "time_series",
+              "interval": "20m",
               "intervalFactor": 5,
               "legendFormat": "{{device}} - Transmit colls",
               "refId": "A",
