@@ -1541,7 +1541,20 @@
           "custom": {},
           "links": []
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": ".*ebs.*"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
       },
       "fill": 4,
       "fillGradient": 0,
@@ -1592,13 +1605,22 @@
           "legendFormat": "{{mountpoint}}",
           "refId": "A",
           "step": 240
+        },
+        {
+          "expr": "min(aws_ec2_ebsbyte_balance_percent_minimum{Name=\"prod-1-$project\"}, aws_ec2_ebsiobalance_percent_minimum{Name=\"prod-1-$project\"})",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "EBS Balance",
+          "refId": "B",
+          "step": 240
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Disk Space Used Basic",
+      "title": "Disk Space Used, EBS IO Balance",
       "tooltip": {
         "shared": true,
         "sort": 0,
