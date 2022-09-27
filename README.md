@@ -1,7 +1,10 @@
 # Grafana Dashboards
-Grafana dashboards
+## Deployment
+* Run `make`
+* Copy resulting files off to [supabase/helper-scripts](https://github.com/supabase/helper-scripts/tree/master/ansible/files/grafana)
+* Run [this playbook](https://github.com/supabase/helper-scripts/blob/master/ansible/grafana-dashboards-playbook.yml) using AWX
 
-
+---
 ### Node Exporter Full
 
 For node_exporter
