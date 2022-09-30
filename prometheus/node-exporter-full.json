@@ -1819,7 +1819,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "free pgbouncer connection slots"
+              "options": "pgbouncer client connections waiting"
             },
             "properties": [
               {
@@ -1885,12 +1885,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "exemplar": true,
-          "expr": "pgbouncer_free_clients{Name=\"prod-1-$project\"}",
+          "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{Name=\"prod-1-$project\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "free pgbouncer connection slots",
+          "legendFormat": "pgbouncer client connections waiting",
           "refId": "D",
           "step": 240
         }
