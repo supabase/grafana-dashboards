@@ -15,7 +15,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "Disk space used by the database",
     "fieldConfig": {
@@ -91,7 +91,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pg_database_size_mb{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -109,7 +109,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "Active number of client connections",
     "fieldConfig": {
@@ -198,7 +198,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pg_stat_database_num_backends{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -212,7 +212,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pgbouncer_used_clients{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -227,7 +227,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{Name=\"ENV_PLACEHOLDER-db-$project\"})",
@@ -246,7 +246,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "fieldConfig": {
       "defaults": {
@@ -315,7 +315,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pg_up{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -330,7 +330,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "fieldConfig": {
       "defaults": {
@@ -399,7 +399,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pgbouncer_up{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -414,7 +414,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -510,7 +510,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(supabase_usage_metrics_user_queries_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -524,7 +524,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_statements_total_queries{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -536,7 +536,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_statements_total_time_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -553,7 +553,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -646,7 +646,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_xact_commit_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -660,7 +660,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_xact_rollback_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -675,7 +675,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_deadlocks_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -694,7 +694,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -790,7 +790,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_conflicts_confl_tablespace_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -804,7 +804,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_conflicts_confl_lock_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -819,7 +819,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_conflicts_confl_snapshot_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -834,7 +834,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_conflicts_confl_bufferpin_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -849,7 +849,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_database_conflicts_confl_deadlock_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -868,7 +868,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "fieldConfig": {
       "defaults": {
@@ -939,7 +939,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pg_settings_default_transaction_read_only{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -955,7 +955,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "fieldConfig": {
       "defaults": {
@@ -1025,7 +1025,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "pg_status_in_recovery{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -1050,7 +1050,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "description": "Realtime replication status",
         "fieldConfig": {
@@ -1121,7 +1121,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "${datasource}"
+              "uid": "${DS_PROMETHEUS}"
             },
             "exemplar": true,
             "expr": "replication_realtime_slot_status{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -1136,7 +1136,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "description": "",
         "fieldConfig": {
@@ -1212,7 +1212,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "${datasource}"
+              "uid": "${DS_PROMETHEUS}"
             },
             "exemplar": true,
             "expr": "replication_realtime_lag_bytes{Name=\"ENV_PLACEHOLDER-db-$project\"}",
@@ -1230,7 +1230,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "fieldConfig": {
           "defaults": {
@@ -1304,7 +1304,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "${datasource}"
+              "uid": "${DS_PROMETHEUS}"
             },
             "exemplar": true,
             "expr": "(physical_replication_lag_physical_replica_lag_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"})[$__rate_interval]",
@@ -1336,7 +1336,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -1429,7 +1429,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_checkpoints_timed_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1443,7 +1443,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_checkpoints_req_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1458,7 +1458,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_checkpoint_write_time_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1473,7 +1473,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_checkpoint_sync_time_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1492,7 +1492,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -1581,7 +1581,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_buffers_checkpoint_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1595,7 +1595,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_buffers_clean_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1610,7 +1610,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_buffers_backend_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1625,7 +1625,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1644,7 +1644,7 @@
   {
     "datasource": {
       "type": "prometheus",
-      "uid": "${datasource}"
+      "uid": "${DS_PROMETHEUS}"
     },
     "description": "",
     "fieldConfig": {
@@ -1733,7 +1733,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_maxwritten_clean_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
@@ -1747,7 +1747,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "${datasource}"
+          "uid": "${DS_PROMETHEUS}"
         },
         "exemplar": true,
         "expr": "rate(pg_stat_bgwriter_buffers_backend_fsync_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",

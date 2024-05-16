@@ -2,20 +2,19 @@
 
 import json
 from pathlib import Path
+import argparse
 
-DASHBOARD_UID = 'rYdddlXXX'
 
-
-# so 3 retries here results in (3 * max_attempts) attempts overall
-def get_upstream_spec():
-    return Path('temp-dashboard-new.json').read_text()
+def get_upstream_spec(upstream_fl):
+    return Path(upstream_fl).read_text()
 
 
 def remove_unused_selectors(spec, env):
     return spec.replace(r'instance=\"$node\",job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
 
 
-# - wrap in outer model
+def update_datasource_name(spec):
+    return spec.replace(r"${datasource}", r"${DS_PROMETHEUS}")
 
 
 def update_input_vars(spec):
@@ -29,6 +28,8 @@ def update_input_vars(spec):
         if var['name'] == 'job':
             # remove the 'job' variable as we don't use it
             continue
+        if var['name'] == 'datasource':
+            var['name'] = 'DS_PROMETHEUS' # for backcompat with existing dashboards and things that link to them
         if var['name'] == 'node':
             var.update({
                 'name': 'project',
@@ -60,7 +61,7 @@ def add_ebs_balance(parsed_spec, env, disk_panel_index):
     disk_panel["targets"].append({
         "datasource": {
             "type": "prometheus",
-            "uid": "${datasource}"
+            "uid": "${DS_PROMETHEUS}"
         },
         "expr": "".join(['min(aws_ec2_ebsbyte_balance_percent_minimum{Name=\"',
                          env,
@@ -102,8 +103,9 @@ def add_additional_panels(parsed_spec, env, disk_panel_index):
     return parsed_spec
 
 
-def wrap_dashboard_spec(parsed_spec):
-    parsed_spec['uid'] = DASHBOARD_UID
+def wrap_dashboard_spec(parsed_spec, dashboard_uid):
+    parsed_spec['uid'] = dashboard_uid
+    parsed_spec['title'] = 'DB Exporter Full'
     final_object = {
         'overwrite': True,
         'inputs': [
@@ -120,19 +122,32 @@ def wrap_dashboard_spec(parsed_spec):
     return final_object
 
 
-def write_out_dashboard(parsed_spec):
-    with open('temp-dashboard-testing.json', 'w') as fl:
+def write_out_dashboard(parsed_spec, output_fl):
+    with open(output_fl, 'w') as fl:
         json.dump(parsed_spec, fl, indent=2)
     print("All done writing out new dashboard")
 
 
 if __name__ == '__main__':
-    env = 'staging'
-    upstream_dashboard = get_upstream_spec()
+    parser = argparse.ArgumentParser("Grafana Dashboards Deployer")
+    parser.add_argument("--env", help="The environment that the projects will use in their name (prod/staging)",
+                        type=str, default="staging")
+    parser.add_argument("--output-file", help="Output file to write to.", type=str,
+                        default="updated-dashboard-spec.json")
+    parser.add_argument("--upstream-file", help="Upstream dashboard spec file.", type=str,
+                        default="temp-dashboard-new.json")
+    parser.add_argument("--dashboard-uid",
+                        help="The Dashboard UID to use. The dashboard on the target installation with this UID will be replaced.",
+                        type=str, default="rYdddlPWk")
+    args = parser.parse_args()
+    env = args.env
+
+    upstream_dashboard = get_upstream_spec(args.upstream_file)
     spec = remove_unused_selectors(upstream_dashboard, env)
+    spec = update_datasource_name(spec)
     spec = update_input_vars(spec)
     disk_panel_index = find_disk_space_panel(spec)
     spec = add_ebs_balance(spec, env, disk_panel_index)
     spec = add_additional_panels(spec, env, disk_panel_index)
-    spec = wrap_dashboard_spec(spec)
-    write_out_dashboard(spec)
+    spec = wrap_dashboard_spec(spec, args.dashboard_uid)
+    write_out_dashboard(spec, args.output_file)

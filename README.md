@@ -1,104 +1,13 @@
 # Grafana Dashboards
-## Deployment
-* Run `make`
-* Copy resulting files off to [supabase/helper-scripts](https://github.com/supabase/helper-scripts/tree/master/ansible/files/grafana)
-* Run [this playbook](https://github.com/supabase/helper-scripts/blob/master/ansible/grafana-dashboards-playbook.yml) using AWX
 
----
-### Node Exporter Full
+## Pulling in upstream changes
 
-For node_exporter
+- Grab an updated [upstream copy](https://github.com/rfmoz/grafana-dashboards/blob/master/prometheus/node-exporter-full.json) of the dashboard
+- Save it to `prometheus/upstream-dashboard.json`
+- Make a PR and GHA should build and deploy it to staging, after making our modifications to it
+- A manual workflow action is provided to further deploy it to prod
 
-Monitor Linux system.
+## Modifications
 
-Only requires the default job_name: node, add as many targets as you need in '/etc/prometheus/prometheus.yml'.
-
-
-```
-  - job_name: node
-    static_configs:
-      - targets: ['localhost:9100']
-```
-
-Recommended for prometheus-node-exporter the arguments '--collector.systemd --collector.processes' because the graph uses some of their metrics.
-
-Notes:
-
-For prometheus-node-expter v.0.16 or older, use node-exporter-full-old.json
-
-Thanks to the PCP project for document the values reported by the kernel in /proc (in their /pmdas/linux/help src file mainly). Url --> http://pcp.io
-
-
-
-### Node Exporter FreeBSD
-
-For node_exporter in FreeBSD system
-
-Monitor FreeBSD system.
-
-Only requires a configured target under any job_name.
-
-
-
-### Haproxy Full _deprecated_
-
-For haproxy_exporter
-
-Monitor Haproxy service.
-
-Only requires a configured target under any job_name.
-
-
-
-### Haproxy 2 Full
-
-For Haproxy compiled with Prometheus support
-
-Monitor Haproxy service direct.
-
-Only requires a configured target under any job_name.
-
-
-
-### Apache Full
-
-For apache_exporter
-
-Monitor Apache service.
-
-Only requires a configured target under any job_name.
-
-
-
-### NFS Full
-
-For node_exporter
-
-Monitor all NFS and NFSd exported values.
-
-Check that the process was started with the arguments "--collector.nfs" and "--collector.nfsd".
-
-The same as Node Exporter Full. Only requires the default job_name: node, add as many targets as you need in '/etc/prometheus/prometheus.yml'.
-
-
-
-### Bind9 Full
-
-For prometheus-bind-exporter https://github.com/prometheus-community/bind_exporter
-
-Monitor Bind9 service. Required configuration in /etc/bind/named.conf.options:
-
-```
-statistics-channels {
-  inet 127.0.0.1 port 8053 allow { 127.0.0.1; };
-};
-```
-
-On Grafana, it only requires a configured target under any job_name. For example:
-
-```
-  - job_name: 'bind'
-    static_configs:
-        - targets:
-           - server_hostname:9119
-```
+We add a number of panels that are useful for our use-case.
+The changes needed are captured in `prometheus/process.py` which can be executed to produce the output spec that gets deployed.
