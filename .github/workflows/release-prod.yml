@@ -1,6 +1,10 @@
 name: Build and Deploy to Prod
 
 on:
+  push:
+    branches:
+      - master
+      - da/pipeline
   workflow_dispatch:
 
 jobs:
