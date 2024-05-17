@@ -105,6 +105,7 @@ def add_additional_panels(parsed_spec, env, disk_panel_index):
 
 def wrap_dashboard_spec(parsed_spec, dashboard_uid):
     parsed_spec['uid'] = dashboard_uid
+    parsed_spec['timezone'] = 'utc'
     parsed_spec['title'] = 'DB Exporter Full'
     final_object = {
         'overwrite': True,
