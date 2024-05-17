@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - master
-      - da/pipeline
-
-# deploy to staging on merge
-# TODO action to deploy to prod
 
 jobs:
   staging-release:
