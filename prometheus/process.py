@@ -10,7 +10,9 @@ def get_upstream_spec(upstream_fl):
 
 
 def remove_unused_selectors(spec, env):
-    return spec.replace(r'instance=\"$node\",job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
+    spec = spec.replace(r'instance=\"$node\",job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
+    spec = spec.replace(r'instance=\"$node\", job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
+    return spec
 
 
 def update_datasource_name(spec):
