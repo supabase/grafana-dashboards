@@ -12,6 +12,8 @@ def get_upstream_spec(upstream_fl):
 def remove_unused_selectors(spec, env):
     spec = spec.replace(r'instance=\"$node\",job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
     spec = spec.replace(r'instance=\"$node\", job=\"$job\"', f'Name=\\"{env}-db-$project\\"')
+    # some panels e.g. CPU utilization use just the instance, and not the job
+    spec = spec.replace(r'instance=\"$node\"', f'Name=\\"{env}-db-$project\\"')
     return spec
 
 
