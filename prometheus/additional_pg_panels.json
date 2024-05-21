@@ -1,0 +1,1855 @@
+[
+  {
+    "collapsed": false,
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 20
+    },
+    "id": 9917,
+    "panels": [],
+    "title": "Postgres",
+    "type": "row"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "Disk space used by the database",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 100,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 40,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "decmbytes"
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 12,
+      "x": 0,
+      "y": 22
+    },
+    "id": 9921,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "single"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pg_database_size_mb{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Database size",
+        "refId": "A",
+        "step": 240
+      }
+    ],
+    "title": "Database size",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "Active number of client connections",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 20,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "pgbouncer client connections waiting"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 6,
+      "w": 9,
+      "x": 12,
+      "y": 22
+    },
+    "id": 9923,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pg_stat_database_num_backends{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "postgres connections",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pgbouncer_used_clients{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "pgbouncer connections",
+        "refId": "C",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "sum by (Name) (pgbouncer_pools_client_waiting_connections{Name=\"ENV_PLACEHOLDER-db-$project\"})",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "pgbouncer client connections waiting",
+        "refId": "D",
+        "step": 240
+      }
+    ],
+    "title": "Client connections",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "0": {
+                "color": "red",
+                "index": 1,
+                "text": "Stopped"
+              },
+              "1": {
+                "color": "green",
+                "index": 0,
+                "text": "Running"
+              }
+            },
+            "type": "value"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 0
+            },
+            {
+              "color": "green",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 21,
+      "y": 22
+    },
+    "id": 9919,
+    "options": {
+      "colorMode": "value",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": ["lastNotNull"],
+        "fields": "",
+        "values": false
+      },
+      "text": {},
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pg_up{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "interval": "",
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "Postgres status",
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "0": {
+                "color": "red",
+                "index": 1,
+                "text": "Stopped"
+              },
+              "1": {
+                "color": "green",
+                "index": 0,
+                "text": "Running"
+              }
+            },
+            "type": "value"
+          }
+        ],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "red",
+              "value": 0
+            },
+            {
+              "color": "green",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 21,
+      "y": 24
+    },
+    "id": 9941,
+    "options": {
+      "colorMode": "value",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": ["lastNotNull"],
+        "fields": "",
+        "values": false
+      },
+      "text": {},
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pgbouncer_up{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "interval": "",
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "pgbouncer status",
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Total time spent"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "unit",
+              "value": "s"
+            },
+            {
+              "id": "custom.axisSoftMax"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 7,
+      "x": 0,
+      "y": 27
+    },
+    "id": 9930,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(supabase_usage_metrics_user_queries_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "No. of user queries",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_statements_total_queries{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Total no. of queries",
+        "refId": "B"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_statements_total_time_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "legendFormat": "Total time spent",
+        "refId": "C"
+      }
+    ],
+    "title": "Query stats",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Deadlocks detected"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "custom.axisSoftMax",
+              "value": 25
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 7,
+      "x": 7,
+      "y": 27
+    },
+    "id": 9942,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_xact_commit_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Tx committed",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_xact_rollback_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Tx rolled back",
+        "refId": "B",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_deadlocks_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Deadlocks detected",
+        "refId": "C",
+        "step": 240
+      }
+    ],
+    "title": "pg stats",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Total time spent"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "unit",
+              "value": "s"
+            },
+            {
+              "id": "custom.axisSoftMax"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 7,
+      "x": 14,
+      "y": 27
+    },
+    "id": 9931,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_conflicts_confl_tablespace_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Dropped tablespaces",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_conflicts_confl_lock_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Lock timeouts",
+        "refId": "B",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_conflicts_confl_snapshot_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Old Snapshots",
+        "refId": "C",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_conflicts_confl_bufferpin_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Pinned buffers",
+        "refId": "D",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_database_conflicts_confl_deadlock_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Deadlocks",
+        "refId": "E",
+        "step": 240
+      }
+    ],
+    "title": "Conflicts - Queries cancelled due to",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "0": {
+                "color": "green",
+                "index": 0,
+                "text": "ReadWrite"
+              },
+              "1": {
+                "color": "red",
+                "index": 1,
+                "text": "ReadOnly"
+              }
+            },
+            "type": "value"
+          }
+        ],
+        "noValue": "N/A",
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "green",
+              "value": 0
+            },
+            {
+              "color": "red",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 21,
+      "y": 27
+    },
+    "id": 9924,
+    "options": {
+      "colorMode": "value",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": ["lastNotNull"],
+        "fields": "",
+        "limit": 2,
+        "values": false
+      },
+      "text": {},
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pg_settings_default_transaction_read_only{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "instant": false,
+        "interval": "",
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "DB Mode",
+    "type": "stat"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "mappings": [
+          {
+            "options": {
+              "0": {
+                "color": "green",
+                "index": 0,
+                "text": "No"
+              },
+              "1": {
+                "color": "red",
+                "index": 1,
+                "text": "Yes"
+              }
+            },
+            "type": "value"
+          }
+        ],
+        "noValue": "N/A",
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            },
+            {
+              "color": "green",
+              "value": 0
+            },
+            {
+              "color": "red",
+              "value": 1
+            }
+          ]
+        }
+      },
+      "overrides": []
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 3,
+      "x": 21,
+      "y": 30
+    },
+    "id": 9925,
+    "options": {
+      "colorMode": "value",
+      "graphMode": "none",
+      "justifyMode": "auto",
+      "orientation": "auto",
+      "reduceOptions": {
+        "calcs": ["last"],
+        "fields": "",
+        "values": false
+      },
+      "text": {},
+      "textMode": "auto"
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "pg_status_in_recovery{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+        "interval": "",
+        "legendFormat": "",
+        "refId": "A"
+      }
+    ],
+    "title": "In Recovery",
+    "type": "stat"
+  },
+  {
+    "collapsed": true,
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 34
+    },
+    "id": 9937,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "description": "Realtime replication status",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "color": "red",
+                    "index": 1,
+                    "text": "Inactive"
+                  },
+                  "1": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "Active"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "noValue": "N/A",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "green",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 0,
+          "y": 35
+        },
+        "id": 9928,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": ["lastNotNull"],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DS_PROMETHEUS}"
+            },
+            "exemplar": true,
+            "expr": "replication_realtime_slot_status{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Realtime replication status",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 20,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 40,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 7,
+          "x": 3,
+          "y": 35
+        },
+        "id": 9929,
+        "links": [],
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "9.4.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DS_PROMETHEUS}"
+            },
+            "exemplar": true,
+            "expr": "replication_realtime_lag_bytes{Name=\"ENV_PLACEHOLDER-db-$project\"}",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "Replication lag ",
+            "refId": "A",
+            "step": 240
+          }
+        ],
+        "title": "Realtime replication lag",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 10,
+          "y": 35
+        },
+        "id": 9940,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DS_PROMETHEUS}"
+            },
+            "exemplar": true,
+            "expr": "(physical_replication_lag_physical_replica_lag_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"})[$__rate_interval]",
+            "interval": "",
+            "legendFormat": "Physical Replication Lag (seconds)",
+            "refId": "A"
+          }
+        ],
+        "title": "Replication lag",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 16,
+          "y": 35
+        },
+        "id": 9940,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "${DS_PROMETHEUS}"
+            },
+            "exemplar": true,
+            "expr": "(pg_ls_archive_statusdir_wal_pending_count{Name=\"ENV_PLACEHOLDER-db-$project\"})[$__rate_interval]",
+            "interval": "",
+            "legendFormat": "WAL files pending archival (count)",
+            "refId": "A"
+          }
+        ],
+        "title": "Pending WAL Archival Count",
+        "type": "timeseries"
+      }
+    ],
+    "title": "Postgres: replication",
+    "type": "row"
+  },
+  {
+    "collapsed": false,
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 43
+    },
+    "id": 9935,
+    "panels": [],
+    "title": "Postgres: bgwriter",
+    "type": "row"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byRegexp",
+            "options": "/^Time spent/"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            },
+            {
+              "id": "unit",
+              "value": "ms"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 8,
+      "x": 0,
+      "y": 44
+    },
+    "id": 9932,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_checkpoints_timed_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Scheduled checkpoints",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_checkpoints_req_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Requested checkpoints",
+        "refId": "B",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_checkpoint_write_time_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Time spent writing checkpoint files",
+        "refId": "C",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_checkpoint_sync_time_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Time spent synchronizing checkpoint files",
+        "refId": "D",
+        "step": 240
+      }
+    ],
+    "title": "bgwriter stats: checkpoints",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Allocated"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 8,
+      "x": 8,
+      "y": 44
+    },
+    "id": 9933,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_buffers_checkpoint_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Written during checkpoints",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_buffers_clean_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Written by bgwriter",
+        "refId": "B",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_buffers_backend_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Written by a backend",
+        "refId": "C",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Allocated",
+        "refId": "D",
+        "step": 240
+      }
+    ],
+    "title": "bgwriter stats: buffers",
+    "type": "timeseries"
+  },
+  {
+    "datasource": {
+      "type": "prometheus",
+      "uid": "${DS_PROMETHEUS}"
+    },
+    "description": "",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "custom": {
+          "axisLabel": "",
+          "axisPlacement": "auto",
+          "axisSoftMax": 5,
+          "barAlignment": 0,
+          "drawStyle": "line",
+          "fillOpacity": 0,
+          "gradientMode": "none",
+          "hideFrom": {
+            "legend": false,
+            "tooltip": false,
+            "viz": false
+          },
+          "lineInterpolation": "linear",
+          "lineWidth": 1,
+          "pointSize": 5,
+          "scaleDistribution": {
+            "type": "linear"
+          },
+          "showPoints": "never",
+          "spanNulls": true,
+          "stacking": {
+            "group": "A",
+            "mode": "none"
+          },
+          "thresholdsStyle": {
+            "mode": "off"
+          }
+        },
+        "links": [],
+        "mappings": [],
+        "min": 0,
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        },
+        "unit": "none"
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Backend fsync calls"
+          },
+          "properties": [
+            {
+              "id": "custom.axisPlacement",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 7,
+      "w": 8,
+      "x": 16,
+      "y": 44
+    },
+    "id": 9940,
+    "links": [],
+    "options": {
+      "legend": {
+        "calcs": [],
+        "displayMode": "list",
+        "placement": "bottom"
+      },
+      "tooltip": {
+        "mode": "multi"
+      }
+    },
+    "pluginVersion": "9.4.3",
+    "targets": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_maxwritten_clean_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "No. of times clean stopped due to writing too many buffers",
+        "refId": "A",
+        "step": 240
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "exemplar": true,
+        "expr": "rate(pg_stat_bgwriter_buffers_backend_fsync_total{Name=\"ENV_PLACEHOLDER-db-$project\"}[$__rate_interval])",
+        "format": "time_series",
+        "hide": false,
+        "interval": "",
+        "intervalFactor": 1,
+        "legendFormat": "Fsync calls by backend",
+        "refId": "D",
+        "step": 240
+      }
+    ],
+    "title": "bgwriter: fsync/clean",
+    "type": "timeseries"
+  }
+]

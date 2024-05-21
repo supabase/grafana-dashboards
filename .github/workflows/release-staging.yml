@@ -1,0 +1,23 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  staging-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: build & deploy to staging targets
+        run: |
+          ./scripts/deploy.sh staging scripts/staging-regions.txt
+        env:
+          GRAFANA_UPLOADER_CF_ID: ${{ secrets.GRAFANA_UPLOADER_CF_ID }}
+          GRAFANA_UPLOADER_CF_SECRET: ${{ secrets.GRAFANA_UPLOADER_CF_SECRET }}
