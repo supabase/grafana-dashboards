@@ -5,12 +5,9 @@ set -euo pipefail
 ENV="${1}"
 TARGET_REGIONS_FILE="${2}"
 
-REPO_DIR="$(cd "$(dirname "$0")/.."; pwd)"
-cd $REPO_DIR
-
 # will replace our existing dashboards
 DASHBOARD_UID=G7Z9GzMGz
-DASHBOARD_FILE="${REPO_DIR}/prometheus/vmagent-dashboard.json"
+DASHBOARD_FILE="vmagent-dashboard.json"
 
 # account for disparity in our monitoring env name and the prefix in project names
 if [[ $ENV == "staging" ]]; then
@@ -20,6 +17,7 @@ else
 fi
 
 for region in $(cat "${TARGET_REGIONS_FILE}"); do
+    pushd prometheus
     echo "Processing ${region}"
     echo "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}"
     curl -XDELETE "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}" \
@@ -33,6 +31,7 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
          --data "@${DASHBOARD_FILE}" \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}"
+    popd
 done
 
 echo "Complete deployment of the vmagent dashboard to all ${ENV} regions"
