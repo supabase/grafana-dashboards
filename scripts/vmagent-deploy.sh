@@ -10,7 +10,7 @@ cd $REPO_DIR
 
 # will replace our existing dashboards
 DASHBOARD_UID=G7Z9GzMGz
-DASHBOARD_FILE=vmagent-dashboard.json
+DASHBOARD_FILE="${REPO_DIR}/prometheus/vmagent-dashboard.json"
 
 # account for disparity in our monitoring env name and the prefix in project names
 if [[ $ENV == "staging" ]]; then
@@ -18,8 +18,6 @@ if [[ $ENV == "staging" ]]; then
 else
     MONITORING_ENV="${ENV}"
 fi
-
-pushd prometheus
 
 for region in $(cat "${TARGET_REGIONS_FILE}"); do
     echo "Processing ${region}"
@@ -36,8 +34,6 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}"
 done
-
-popd
 
 echo "Complete deployment of the vmagent dashboard to all ${ENV} regions"
 
