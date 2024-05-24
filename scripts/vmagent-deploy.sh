@@ -18,13 +18,18 @@ fi
 
 for region in $(cat "${TARGET_REGIONS_FILE}"); do
     pushd prometheus
-    echo "Processing ${region}"
+    echo "Processing for region: ${region}"
+    echo "Current path is: $(pwd)"
     echo "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}"
+    echo "Deleting previous vmagent dashboard"
+    echo "-----------------------------------"
     curl -XDELETE "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}" || true
+    echo "Creating new vmgent dashboard"
+    echo "-----------------------------"
     curl -f -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
