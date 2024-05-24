@@ -30,7 +30,7 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
     curl -sf -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
-         --data-binary "@${DASHBOARD_FILE}" \
+         --data "@${DASHBOARD_FILE}" \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}"
 done
