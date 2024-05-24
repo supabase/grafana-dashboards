@@ -25,7 +25,7 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
          -H 'Content-Type: application/json' \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}" || true
-    curl -sf -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
+    curl -f -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
          --data "@${DASHBOARD_FILE}" \
