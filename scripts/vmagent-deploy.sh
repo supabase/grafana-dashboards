@@ -18,6 +18,7 @@ fi
 
 for region in $(cat "${TARGET_REGIONS_FILE}"); do
     pushd prometheus
+    echo ""
     echo "Processing for region: ${region}"
     echo "Current path is: $(pwd)"
     echo "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}"
@@ -28,6 +29,7 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
          -H 'Content-Type: application/json' \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}" || true
+    echo ""
     echo "Creating new vmgent dashboard"
     echo "-----------------------------"
     curl -f -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \

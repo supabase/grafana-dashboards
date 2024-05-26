@@ -6366,10 +6366,9 @@
         "1d"
       ]
     },
-    "timezone": "",
+    "timezone": "utc",
     "title": "VictoriaMetrics - vmagent",
     "uid": "G7Z9GzMGz",
-    "version": 1,
-    "weekStart": ""
+    "id": null
   }
 }
