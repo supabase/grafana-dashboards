@@ -7,7 +7,7 @@ TARGET_REGIONS_FILE="${2}"
 
 # will replace our existing dashboards
 DASHBOARD_UID=G7Z9GzMGz
-DASHBOARD_FILE="vmagent-dashboard.json"
+DASHBOARD_FILE="./prometheus/vmagent-dashboard.json"
 
 # account for disparity in our monitoring env name and the prefix in project names
 if [[ $ENV == "staging" ]]; then
@@ -17,14 +17,13 @@ else
 fi
 
 for region in $(cat "${TARGET_REGIONS_FILE}"); do
-    pushd prometheus
     echo ""
     echo "Processing for region: ${region}"
     echo "Current path is: $(pwd)"
     echo "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}"
     echo "Deleting previous vmagent dashboard"
     echo "-----------------------------------"
-    curl -XDELETE "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}" \
+    curl -s -XDELETE "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/uid/${DASHBOARD_UID}" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
@@ -32,13 +31,12 @@ for region in $(cat "${TARGET_REGIONS_FILE}"); do
     echo ""
     echo "Creating new vmgent dashboard"
     echo "-----------------------------"
-    curl -f -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
+    curl -sf -XPOST "https://monitoring-federated-${region}-${MONITORING_ENV}.supabase.xyz/grafana/api/dashboards/db" \
          -H 'X-WEBAUTH-USER: automated-user@supabase.io' \
          -H 'Content-Type: application/json' \
          --data-binary "@${DASHBOARD_FILE}" \
          -H "CF-Access-Client-Id: ${GRAFANA_UPLOADER_CF_ID}" \
          -H "CF-Access-Client-Secret: ${GRAFANA_UPLOADER_CF_SECRET}"
-    popd
 done
 
 echo "Complete deployment of the vmagent dashboard to all ${ENV} regions"
