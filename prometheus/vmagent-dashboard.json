@@ -2,42 +2,43 @@
   "overwrite": true,
   "folderId": 0,
   "dashboard": {
+    "__inputs": [],
     "__elements": {},
     "__requires": [
       {
+        "type": "grafana",
         "id": "grafana",
         "name": "Grafana",
-        "type": "grafana",
         "version": "10.4.2"
       },
       {
+        "type": "datasource",
         "id": "prometheus",
         "name": "Prometheus",
-        "type": "datasource",
         "version": "1.0.0"
       },
       {
+        "type": "panel",
         "id": "stat",
         "name": "Stat",
-        "type": "panel",
         "version": ""
       },
       {
+        "type": "panel",
         "id": "table",
         "name": "Table",
-        "type": "panel",
         "version": ""
       },
       {
+        "type": "panel",
         "id": "text",
         "name": "Text",
-        "type": "panel",
         "version": ""
       },
       {
+        "type": "panel",
         "id": "timeseries",
         "name": "Time series",
-        "type": "panel",
         "version": ""
       }
     ],
@@ -91,9 +92,8 @@
     "description": "Overview for VictoriaMetrics vmagent v1.80.0 or higher",
     "editable": true,
     "fiscalYearStartMonth": 0,
-    "gnetId": 12683,
     "graphTooltip": 1,
-    "id": 19,
+    "id": null,
     "links": [
       {
         "icon": "doc",
@@ -954,7 +954,7 @@
           "type": "prometheus",
           "uid": "$ds"
         },
-        "description": "Shows the persistent queue size of pending samples in bytes \\u003E2MB which hasn't been flushed to remote storage yet. \n\nIncreasing of value might be a sign of connectivity issues. In such cases, vmagent starts to flush pending data on disk with attempt to send it later once connection is restored.\n\nRemote write URLs are hidden by default but might be unveiled once `-remoteWrite.showURL` is set to true.\n\nClick on the line and choose Drilldown to show CPU usage per instance.\n",
+        "description": "Shows the persistent queue size of pending samples in bytes >2MB which hasn't been flushed to remote storage yet. \n\nIncreasing of value might be a sign of connectivity issues. In such cases, vmagent starts to flush pending data on disk with attempt to send it later once connection is restored.\n\nRemote write URLs are hidden by default but might be unveiled once `-remoteWrite.showURL` is set to true.\n\nClick on the line and choose Drilldown to show CPU usage per instance.\n",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -1058,9 +1058,9 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(vmagent_remotewrite_pending_data_bytes{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}) by (job, url) \\u003E 2e6",
+            "expr": "sum(vmagent_remotewrite_pending_data_bytes{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}) by (job, url) > 2e6",
             "interval": "",
-            "legendFormat": "{{job}} =\\u003E {{url}}",
+            "legendFormat": "{{job}} => {{url}}",
             "range": true,
             "refId": "A"
           }
@@ -1165,7 +1165,7 @@
             },
             "editorMode": "code",
             "exemplar": true,
-            "expr": "sum(rate(vm_log_messages_total{job=~\"$job\",instance=~\"$instance\", level!=\"info\"}[$__rate_interval])) by (job, level) \\u003E 0",
+            "expr": "sum(rate(vm_log_messages_total{job=~\"$job\",instance=~\"$instance\", level!=\"info\"}[$__rate_interval])) by (job, level) > 0",
             "format": "time_series",
             "hide": false,
             "interval": "5m",
@@ -1279,7 +1279,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vm_persistentqueue_bytes_dropped_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by (path) \\u003E 0",
+            "expr": "sum(rate(vm_persistentqueue_bytes_dropped_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by (path) > 0",
             "interval": "",
             "legendFormat": "{{ path }}",
             "range": true,
@@ -1383,7 +1383,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vmagent_http_requests_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, path) \\u003E 0",
+            "expr": "sum(rate(vmagent_http_requests_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, path) > 0",
             "interval": "",
             "legendFormat": "",
             "range": true,
@@ -1494,7 +1494,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vmagent_http_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, protocol) \\u003E 0",
+            "expr": "sum(rate(vmagent_http_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, protocol) > 0",
             "interval": "",
             "legendFormat": "requests:{{protocol}} ({{job}})",
             "range": true,
@@ -1506,7 +1506,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vm_protoparser_read_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+            "expr": "sum(rate(vm_protoparser_read_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
             "interval": "",
             "legendFormat": "parse: {{type}} ({{job}})",
             "range": true,
@@ -1518,7 +1518,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vm_ingestserver_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+            "expr": "sum(rate(vm_ingestserver_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
             "interval": "",
             "legendFormat": "ingest: {{type}} ({{job}})",
             "range": true,
@@ -1530,7 +1530,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vm_protoparser_unmarshal_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+            "expr": "sum(rate(vm_protoparser_unmarshal_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
             "interval": "",
             "legendFormat": "unmarshal: {{type}} ({{job}})",
             "range": true,
@@ -1542,7 +1542,7 @@
               "uid": "$ds"
             },
             "editorMode": "code",
-            "expr": "sum(rate(vm_promscrape_dial_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+            "expr": "sum(rate(vm_promscrape_dial_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
             "interval": "",
             "legendFormat": "scrape dial ({{job}})",
             "range": true,
@@ -1911,7 +1911,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(process_io_storage_read_bytes_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(process_io_storage_read_bytes_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "format": "time_series",
                 "hide": false,
                 "interval": "",
@@ -1926,7 +1926,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(process_io_storage_written_bytes_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(process_io_storage_written_bytes_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "format": "time_series",
                 "hide": false,
                 "interval": "",
@@ -2617,7 +2617,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": false,
-                "expr": "topk_max(5, sum(sum_over_time(scrape_series_added[5m])) by (job)) \\u003E 0",
+                "expr": "topk_max(5, sum(sum_over_time(scrape_series_added[5m])) by (job)) > 0",
                 "interval": "",
                 "legendFormat": "{{ job }}",
                 "range": true,
@@ -2719,7 +2719,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": false,
-                "expr": "topk(10, sum(sum_over_time(scrape_series_added[5m])) by (instance)) \\u003E 0",
+                "expr": "topk(10, sum(sum_over_time(scrape_series_added[5m])) by (instance)) > 0",
                 "interval": "",
                 "legendFormat": "__auto",
                 "range": true,
@@ -3034,7 +3034,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_remotewrite_packets_dropped_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(job, url) \\u003E 0",
+                "expr": "sum(rate(vmagent_remotewrite_packets_dropped_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(job, url) > 0",
                 "interval": "",
                 "legendFormat": "__auto",
                 "range": true,
@@ -3144,7 +3144,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vmagent_remotewrite_relabel_metrics_dropped_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, url) \\u003E 0",
+                "expr": "sum(rate(vmagent_remotewrite_relabel_metrics_dropped_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, url) > 0",
                 "interval": "",
                 "legendFormat": "__auto",
                 "range": true,
@@ -3247,7 +3247,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vm_protoparser_rows_read_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+                "expr": "sum(rate(vm_protoparser_rows_read_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
                 "interval": "",
                 "legendFormat": "{{ type }} ({{job}})",
                 "range": true,
@@ -3349,7 +3349,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vm_rows_invalid_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+                "expr": "sum(rate(vm_rows_invalid_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
                 "interval": "",
                 "legendFormat": "{{type}} ({{job}})",
                 "range": true,
@@ -3607,7 +3607,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(vm_promscrape_targets{job=~\"$job\", instance=~\"$instance\", status=\"up\"}) by(job, type) \\u003E 0",
+                "expr": "sum(vm_promscrape_targets{job=~\"$job\", instance=~\"$instance\", status=\"up\"}) by(job, type) > 0",
                 "format": "time_series",
                 "interval": "",
                 "legendFormat": "{{type}} ({{job}})",
@@ -3712,7 +3712,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(vm_promscrape_targets{job=~\"$job\", instance=~\"$instance\", status=\"down\"}) by(job, type) \\u003E 0",
+                "expr": "sum(vm_promscrape_targets{job=~\"$job\", instance=~\"$instance\", status=\"down\"}) by(job, type) > 0",
                 "format": "time_series",
                 "interval": "",
                 "legendFormat": "{{type}} ({{job}})",
@@ -3819,7 +3819,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(vm_promscrape_scrape_pool_targets{job=~\"$job\", instance=~\"$instance\", status=\"up\"}) by(job, scrape_job) \\u003E 0",
+                "expr": "sum(vm_promscrape_scrape_pool_targets{job=~\"$job\", instance=~\"$instance\", status=\"up\"}) by(job, scrape_job) > 0",
                 "format": "time_series",
                 "interval": "",
                 "legendFormat": "{{job}}: {{scrape_job}}",
@@ -3924,7 +3924,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(vm_promscrape_scrape_pool_targets{job=~\"$job\", instance=~\"$instance\", status=\"down\"}) by(job, scrape_job) \\u003E 0",
+                "expr": "sum(vm_promscrape_scrape_pool_targets{job=~\"$job\", instance=~\"$instance\", status=\"down\"}) by(job, scrape_job) > 0",
                 "format": "time_series",
                 "interval": "",
                 "legendFormat": "{{job}}: {{scrape_job}}",
@@ -4342,7 +4342,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vm_promscrape_scrapes_failed_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vm_promscrape_scrapes_failed_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "interval": "",
                 "legendFormat": "scrapes failed ({{job}})",
                 "range": true,
@@ -4354,7 +4354,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vm_promscrape_scrapes_timed_out_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vm_promscrape_scrapes_timed_out_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "interval": "",
                 "legendFormat": "timeouts ({{job}})",
                 "range": true,
@@ -4366,7 +4366,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vm_promscrape_scrapes_gunzip_failed_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vm_promscrape_scrapes_gunzip_failed_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "interval": "",
                 "legendFormat": "gunzip fails ({{job}})",
                 "range": true,
@@ -4378,7 +4378,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vm_promscrape_dial_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vm_promscrape_dial_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "interval": "",
                 "legendFormat": "dial fails ({{job}})",
                 "range": true,
@@ -4390,7 +4390,7 @@
                   "uid": "$ds"
                 },
                 "editorMode": "code",
-                "expr": "sum(rate(vm_promscrape_max_scrape_size_exceeded_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vm_promscrape_max_scrape_size_exceeded_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "hide": false,
                 "interval": "",
                 "legendFormat": "max scrape size exceeded ({{job}})",
@@ -4521,7 +4521,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vm_ingestserver_requests_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type, net) \\u003E 0",
+                "expr": "sum(rate(vm_ingestserver_requests_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type, net) > 0",
                 "interval": "",
                 "legendFormat": "{{net}}: {{ type }} ({{job}})",
                 "range": true,
@@ -4534,7 +4534,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_http_requests_total{job=~\"$job\", instance=~\"$instance\", protocol!=\"\"}[$__rate_interval])) by(job, protocol) \\u003E 0",
+                "expr": "sum(rate(vmagent_http_requests_total{job=~\"$job\", instance=~\"$instance\", protocol!=\"\"}[$__rate_interval])) by(job, protocol) > 0",
                 "interval": "",
                 "legendFormat": "{{ protocol }}: http ({{job}})",
                 "range": true,
@@ -4637,7 +4637,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_rows_inserted_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) \\u003E 0",
+                "expr": "sum(rate(vmagent_rows_inserted_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job, type) > 0",
                 "interval": "",
                 "legendFormat": "{{ type }} ({{job}})",
                 "range": true,
@@ -4855,7 +4855,7 @@
                   "uid": "$ds"
                 },
                 "exemplar": true,
-                "expr": "sum(rate(vm_ingestserver_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(type, net) \\u003E 0",
+                "expr": "sum(rate(vm_ingestserver_request_errors_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(type, net) > 0",
                 "interval": "",
                 "legendFormat": "{{ type }} ({{net}})",
                 "refId": "A"
@@ -4866,7 +4866,7 @@
                   "uid": "$ds"
                 },
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_http_request_errors_total{job=~\"$job\", instance=~\"$instance\", protocol!=\"\"}[$__rate_interval])) by(protocol) \\u003E 0",
+                "expr": "sum(rate(vmagent_http_request_errors_total{job=~\"$job\", instance=~\"$instance\", protocol!=\"\"}[$__rate_interval])) by(protocol) > 0",
                 "interval": "",
                 "legendFormat": "{{ protocol }} (http)",
                 "refId": "B"
@@ -4995,7 +4995,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_remotewrite_requests_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(job, url, status_code) \\u003E 0",
+                "expr": "sum(rate(vmagent_remotewrite_requests_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(job, url, status_code) > 0",
                 "interval": "",
                 "legendFormat": "",
                 "range": true,
@@ -5097,7 +5097,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_remotewrite_conn_bytes_written_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) \\u003E 0",
+                "expr": "sum(rate(vmagent_remotewrite_conn_bytes_written_total{job=~\"$job\", instance=~\"$instance\"}[$__rate_interval])) by(job) > 0",
                 "interval": "",
                 "legendFormat": "__auto",
                 "range": true,
@@ -5199,7 +5199,7 @@
                 },
                 "editorMode": "code",
                 "exemplar": true,
-                "expr": "sum(rate(vmagent_remotewrite_retries_count_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(url) \\u003E 0",
+                "expr": "sum(rate(vmagent_remotewrite_retries_count_total{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}[$__rate_interval])) by(url) > 0",
                 "interval": "",
                 "legendFormat": "__auto",
                 "range": true,
@@ -5959,7 +5959,7 @@
                 "exemplar": true,
                 "expr": "sum(vmagent_remotewrite_pending_data_bytes{job=~\"$job\", instance=~\"$instance\", url=~\"$url\"}) by (instance, url)",
                 "interval": "",
-                "legendFormat": "{{instance}} =\\u003E {{url}}",
+                "legendFormat": "{{instance}} => {{url}}",
                 "range": true,
                 "refId": "A"
               }
@@ -6366,9 +6366,11 @@
         "1d"
       ]
     },
-    "timezone": "utc",
+    "timezone": "",
     "title": "VictoriaMetrics - vmagent",
     "uid": "G7Z9GzMGz",
-    "id": null
+    "version": 1,
+    "weekStart": "",
+    "gnetId": 12683
   }
 }
