@@ -1307,7 +1307,7 @@
               "uid": "${DS_PROMETHEUS}"
             },
             "exemplar": true,
-            "expr": "(physical_replication_lag_physical_replica_lag_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"})[$__rate_interval]",
+            "expr": "(physical_replication_lag_physical_replication_lag_seconds{Name=\"ENV_PLACEHOLDER-db-$project\"})[$__rate_interval]",
             "interval": "",
             "legendFormat": "Physical Replication Lag (seconds)",
             "refId": "A"
