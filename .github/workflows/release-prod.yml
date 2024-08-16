@@ -16,6 +16,7 @@ jobs:
       - name: build & deploy to prod targets
         run: |
           ./scripts/deploy.sh prod scripts/prod-regions.txt
+          ./scripts/deploy-salt.sh prod scripts/prod-regions.txt
           ./scripts/vmagent-deploy.sh prod scripts/prod-regions.txt
         env:
           GRAFANA_UPLOADER_CF_ID: ${{ secrets.GRAFANA_UPLOADER_CF_ID }}
