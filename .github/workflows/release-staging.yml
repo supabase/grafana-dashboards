@@ -18,6 +18,7 @@ jobs:
       - name: build & deploy to staging targets
         run: |
           ./scripts/deploy.sh staging scripts/staging-regions.txt
+          ./scripts/deploy-salt.sh staging scripts/staging-regions.txt
           ./scripts/vmagent-deploy.sh staging scripts/staging-regions.txt
         env:
           GRAFANA_UPLOADER_CF_ID: ${{ secrets.GRAFANA_UPLOADER_CF_ID }}
