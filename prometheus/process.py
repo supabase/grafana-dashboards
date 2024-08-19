@@ -94,7 +94,7 @@ def add_ebs_balance(parsed_spec, env, disk_panel_index):
 
 
 def add_additional_panels(parsed_spec, env, disk_panel_index):
-    panels = Path('additional_pg_panels.json').read_text()
+    panels = Path('additional_panels.json').read_text()
     panels = panels.replace("ENV_PLACEHOLDER", env)
     parsed_panels = json.loads(panels)
     insertion_index = disk_panel_index + 1
@@ -103,7 +103,7 @@ def add_additional_panels(parsed_spec, env, disk_panel_index):
     # adjust y-position for all panels following the inserted panels
     # the adjustment amount depends on the height of the added panels
     for _, panel in enumerate(parsed_spec["panels"][(insertion_index + len(parsed_panels)):]):
-        panel["gridPos"]["y"] += 34
+        panel["gridPos"]["y"] += 41
     return parsed_spec
 
 
