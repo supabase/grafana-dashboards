@@ -1863,7 +1863,7 @@
     "id": 9944,
     "panels": [
       {
-        "datasource": "grafana-bigquery-datasource",
+        "datasource": "Google BigQuery",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -1992,7 +1992,7 @@
         "targets": [
           {
             "dataset": "raw_infra",
-            "datasource": "grafana-bigquery-datasource",
+            "datasource": "Google BigQuery",
             "editorMode": "code",
             "format": 0,
             "location": "EU",
@@ -2025,7 +2025,7 @@
         "type": "timeseries"
       },
       {
-        "datasource": "grafana-bigquery-datasource",
+        "datasource": "Google BigQuery",
         "description": "",
         "fieldConfig": {
           "defaults": {
@@ -2154,7 +2154,7 @@
         "targets": [
           {
             "dataset": "raw_infra",
-            "datasource": "grafana-bigquery-datasource",
+            "datasource": "Google BigQuery",
             "editorMode": "code",
             "format": 0,
             "location": "EU",
