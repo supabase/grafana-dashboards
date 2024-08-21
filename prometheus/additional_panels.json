@@ -100,7 +100,7 @@
         "root_selector": "",
         "source": "url",
         "type": "json",
-        "url": "https://readonly.supabase.green/rest/v1/projects",
+        "url": "https://READ_ONLY_URL_PLACEHOLDER/rest/v1/projects",
         "url_options": {
           "data": "",
           "method": "GET",

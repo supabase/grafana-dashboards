@@ -96,6 +96,7 @@ def add_ebs_balance(parsed_spec, env, disk_panel_index):
 def add_additional_panels(parsed_spec, env, disk_panel_index):
     panels = Path('additional_panels.json').read_text()
     panels = panels.replace("ENV_PLACEHOLDER", env)
+    panels = panels.replace("READ_ONLY_URL_PLACEHOLDER", "readonly.supabase.io" if env == "prod" else "readonly.supabase.green")
     parsed_panels = json.loads(panels)
     insertion_index = disk_panel_index + 1
     for panel in reversed(parsed_panels):
