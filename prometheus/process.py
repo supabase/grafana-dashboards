@@ -94,16 +94,21 @@ def add_ebs_balance(parsed_spec, env, disk_panel_index):
 
 
 def add_additional_panels(parsed_spec, env, disk_panel_index):
-    panels = Path('additional_pg_panels.json').read_text()
+    panels = Path('additional_panels.json').read_text()
     panels = panels.replace("ENV_PLACEHOLDER", env)
+    panels = panels.replace("READ_ONLY_URL_PLACEHOLDER", "readonly.supabase.io" if env == "prod" else "readonly.supabase.green")
     parsed_panels = json.loads(panels)
     insertion_index = disk_panel_index + 1
     for panel in reversed(parsed_panels):
         parsed_spec["panels"].insert(insertion_index, panel)
+    # adjust y-position for all panels before the inserted panels
+    # the adjustment amount depends on the height of the added panels at the top
+    for _, panel in enumerate(parsed_spec["panels"][:insertion_index]):
+        panel["gridPos"]["y"] += 3
     # adjust y-position for all panels following the inserted panels
-    # the adjustment amount depends on the height of the added panels
+    # the adjustment amount depends on the height of the added panels in the middle
     for _, panel in enumerate(parsed_spec["panels"][(insertion_index + len(parsed_panels)):]):
-        panel["gridPos"]["y"] += 34
+        panel["gridPos"]["y"] += 44
     return parsed_spec
 
 

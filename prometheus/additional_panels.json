@@ -1,11 +1,133 @@
 [
   {
+    "datasource": "Middleware PostgREST",
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "thresholds"
+        },
+        "custom": {
+          "align": "auto",
+          "displayMode": "auto",
+          "filterable": false
+        },
+        "mappings": [],
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "green",
+              "value": null
+            }
+          ]
+        }
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "ID"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 100
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Status"
+          },
+          "properties": [
+            {
+              "id": "custom.width",
+              "value": 150
+            }
+          ]
+        }
+      ]
+    },
+    "gridPos": {
+      "h": 3,
+      "w": 24,
+      "x": 0,
+      "y": 0
+    },
+    "id": 9944,
+    "options": {
+      "footer": {
+        "fields": "",
+        "reducer": [
+          "sum"
+        ],
+        "show": false
+      },
+      "showHeader": true,
+      "sortBy": []
+    },
+    "pluginVersion": "8.3.3",
+    "targets": [
+      {
+        "columns": [
+          {
+            "selector": "id",
+            "text": "ID",
+            "type": "number"
+          },
+          {
+            "selector": "name",
+            "text": "Name",
+            "type": "string"
+          },
+          {
+            "selector": "organizations.name",
+            "text": "Org Name",
+            "type": "string"
+          },
+          {
+            "selector": "status",
+            "text": "Status",
+            "type": "string"
+          }
+        ],
+        "datasource": "Middleware PostgREST",
+        "filters": [],
+        "format": "table",
+        "global_query_id": "",
+        "refId": "A",
+        "root_selector": "",
+        "source": "url",
+        "type": "json",
+        "url": "https://READ_ONLY_URL_PLACEHOLDER/rest/v1/projects",
+        "url_options": {
+          "data": "",
+          "method": "GET",
+          "params": [
+            {
+              "key": "ref",
+              "value": "eq.$project"
+            },
+            {
+              "key": "select",
+              "value": "id,name,organizations!projects_organization_id_fkey(id,name),status"
+            }
+          ]
+        }
+      }
+    ],
+    "transformations": [],
+    "transparent": true,
+    "type": "table"
+  },
+  {
     "collapsed": false,
     "gridPos": {
       "h": 1,
       "w": 24,
       "x": 0,
-      "y": 20
+      "y": 23
     },
     "id": 9917,
     "panels": [],
@@ -72,7 +194,7 @@
       "h": 6,
       "w": 12,
       "x": 0,
-      "y": 22
+      "y": 25
     },
     "id": 9921,
     "links": [],
@@ -179,7 +301,7 @@
       "h": 6,
       "w": 9,
       "x": 12,
-      "y": 22
+      "y": 25
     },
     "id": 9923,
     "links": [],
@@ -294,7 +416,7 @@
       "h": 3,
       "w": 3,
       "x": 21,
-      "y": 22
+      "y": 25
     },
     "id": 9919,
     "options": {
@@ -378,7 +500,7 @@
       "h": 3,
       "w": 3,
       "x": 21,
-      "y": 24
+      "y": 27
     },
     "id": 9941,
     "options": {
@@ -491,7 +613,7 @@
       "h": 7,
       "w": 7,
       "x": 0,
-      "y": 27
+      "y": 30
     },
     "id": 9930,
     "links": [],
@@ -627,7 +749,7 @@
       "h": 7,
       "w": 7,
       "x": 7,
-      "y": 27
+      "y": 30
     },
     "id": 9942,
     "links": [],
@@ -771,7 +893,7 @@
       "h": 7,
       "w": 7,
       "x": 14,
-      "y": 27
+      "y": 30
     },
     "id": 9931,
     "links": [],
@@ -917,7 +1039,7 @@
       "h": 3,
       "w": 3,
       "x": 21,
-      "y": 27
+      "y": 30
     },
     "id": 9924,
     "options": {
@@ -1004,7 +1126,7 @@
       "h": 3,
       "w": 3,
       "x": 21,
-      "y": 30
+      "y": 33
     },
     "id": 9925,
     "options": {
@@ -1043,7 +1165,7 @@
       "h": 1,
       "w": 24,
       "x": 0,
-      "y": 34
+      "y": 37
     },
     "id": 9937,
     "panels": [
@@ -1100,7 +1222,7 @@
           "h": 3,
           "w": 3,
           "x": 0,
-          "y": 35
+          "y": 38
         },
         "id": 9928,
         "options": {
@@ -1193,7 +1315,7 @@
           "h": 3,
           "w": 7,
           "x": 3,
-          "y": 35
+          "y": 38
         },
         "id": 9929,
         "links": [],
@@ -1287,7 +1409,7 @@
           "h": 8,
           "w": 6,
           "x": 10,
-          "y": 35
+          "y": 38
         },
         "id": 9940,
         "options": {
@@ -1376,7 +1498,7 @@
           "h": 8,
           "w": 6,
           "x": 16,
-          "y": 35
+          "y": 38
         },
         "id": 9940,
         "options": {
@@ -1415,7 +1537,7 @@
       "h": 1,
       "w": 24,
       "x": 0,
-      "y": 43
+      "y": 46
     },
     "id": 9935,
     "panels": [],
@@ -1499,7 +1621,7 @@
       "h": 7,
       "w": 8,
       "x": 0,
-      "y": 44
+      "y": 47
     },
     "id": 9932,
     "links": [],
@@ -1651,7 +1773,7 @@
       "h": 7,
       "w": 8,
       "x": 8,
-      "y": 44
+      "y": 47
     },
     "id": 9933,
     "links": [],
@@ -1803,7 +1925,7 @@
       "h": 7,
       "w": 8,
       "x": 16,
-      "y": 44
+      "y": 47
     },
     "id": 9940,
     "links": [],
@@ -1851,5 +1973,343 @@
     ],
     "title": "bgwriter: fsync/clean",
     "type": "timeseries"
+  },
+  {
+    "collapsed": true,
+    "gridPos": {
+      "h": 1,
+      "w": 24,
+      "x": 0,
+      "y": 54
+    },
+    "id": 9944,
+    "panels": [
+      {
+        "datasource": "Google BigQuery",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_2xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_3xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_4xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_5xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 55
+        },
+        "id": 9950,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "dataset": "raw_infra",
+            "datasource": "Google BigQuery",
+            "editorMode": "code",
+            "format": 0,
+            "location": "EU",
+            "project": "supabase-etl-prod-eu",
+            "rawQuery": true,
+            "rawSql": "WITH minutes AS (\n  SELECT\n    TIMESTAMP_SECONDS(UNIX_SECONDS('2024-07-01') + sequence * 60) AS timestamp_minute\n  FROM\n    UNNEST (\n      GENERATE_ARRAY(\n        1,\n        TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), '2024-07-01', MINUTE)\n      )\n    ) AS sequence\n),\nproject_requests AS (\n  SELECT\n    timestamp_minute,\n    SUM(status_code_2xx) AS status_code_2xx,\n    SUM(status_code_3xx) AS status_code_3xx,\n    SUM(status_code_4xx) AS status_code_4xx,\n    SUM(status_code_5xx) AS status_code_5xx\n  FROM\n    `supabase-etl-prod-eu.raw_infra.cloudflare_logs_status_code_groups_materialized`\n  WHERE\n    $__timeFilter(timestamp_minute)\n    AND ref = '$project'\n    AND request_type = 'auth'\n  GROUP BY\n    timestamp_minute\n)\nSELECT\n  timestamp_minute,\n  COALESCE(status_code_2xx, 0) AS status_code_2xx,\n  COALESCE(status_code_3xx, 0) AS status_code_3xx,\n  COALESCE(status_code_4xx, 0) AS status_code_4xx,\n  COALESCE(status_code_5xx, 0) AS status_code_5xx\nFROM\n  minutes\n  LEFT JOIN project_requests USING (timestamp_minute)\nWHERE\n  $__timeFilter(timestamp_minute)\n  AND timestamp_minute <= (\n    SELECT\n      MAX(timestamp_minute)\n    FROM\n      `supabase-etl-prod-eu.raw_infra.cloudflare_logs_status_code_groups_materialized`\n    WHERE\n      timestamp_minute > TIMESTAMP_ADD(CURRENT_TIMESTAMP, INTERVAL -10 MINUTE)\n  )\nORDER BY\n  timestamp_minute",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "cloudflare_logs_status_codes_materialized"
+          }
+        ],
+        "title": "Auth Requests",
+        "transformations": [],
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Google BigQuery",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_2xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_3xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_4xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status_code_5xx"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 55
+        },
+        "id": 9951,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "dataset": "raw_infra",
+            "datasource": "Google BigQuery",
+            "editorMode": "code",
+            "format": 0,
+            "location": "EU",
+            "project": "supabase-etl-prod-eu",
+            "rawQuery": true,
+            "rawSql": "WITH minutes AS (\n  SELECT\n    TIMESTAMP_SECONDS(UNIX_SECONDS('2024-07-01') + sequence * 60) AS timestamp_minute\n  FROM\n    UNNEST (\n      GENERATE_ARRAY(\n        1,\n        TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), '2024-07-01', MINUTE)\n      )\n    ) AS sequence\n),\nproject_requests AS (\n  SELECT\n    timestamp_minute,\n    SUM(status_code_2xx) AS status_code_2xx,\n    SUM(status_code_3xx) AS status_code_3xx,\n    SUM(status_code_4xx) AS status_code_4xx,\n    SUM(status_code_5xx) AS status_code_5xx\n  FROM\n    `supabase-etl-prod-eu.raw_infra.cloudflare_logs_status_code_groups_materialized`\n  WHERE\n    $__timeFilter(timestamp_minute)\n    AND ref = '$project'\n    AND request_type = 'rest'\n  GROUP BY\n    timestamp_minute\n)\nSELECT\n  timestamp_minute,\n  COALESCE(status_code_2xx, 0) AS status_code_2xx,\n  COALESCE(status_code_3xx, 0) AS status_code_3xx,\n  COALESCE(status_code_4xx, 0) AS status_code_4xx,\n  COALESCE(status_code_5xx, 0) AS status_code_5xx\nFROM\n  minutes\n  LEFT JOIN project_requests USING (timestamp_minute)\nWHERE\n  $__timeFilter(timestamp_minute)\n  AND timestamp_minute <= (\n    SELECT\n      MAX(timestamp_minute)\n    FROM\n      `supabase-etl-prod-eu.raw_infra.cloudflare_logs_status_code_groups_materialized`\n    WHERE\n      timestamp_minute > TIMESTAMP_ADD(CURRENT_TIMESTAMP, INTERVAL -10 MINUTE)\n  )\nORDER BY\n  timestamp_minute",
+            "refId": "A",
+            "sql": {
+              "columns": [
+                {
+                  "parameters": [],
+                  "type": "function"
+                }
+              ],
+              "groupBy": [
+                {
+                  "property": {
+                    "type": "string"
+                  },
+                  "type": "groupBy"
+                }
+              ],
+              "limit": 50
+            },
+            "table": "cloudflare_logs_status_codes_materialized"
+          }
+        ],
+        "title": "PostgREST Requests",
+        "transformations": [],
+        "type": "timeseries"
+      }
+    ],
+    "title": "HTTP Requests",
+    "type": "row"
   }
 ]
